@@ -37,7 +37,7 @@
     include("../koneksi.php");
 
     #3. menulis query
-    $tampil = "SELECT *, karyawans.nama as nama_karyawan, divisis.nama as divisi_id FROM karyawans INNER JOIN divisis ON karyawans.divisi_id=divisi.id";
+    $tampil = "SELECT *, karyawans.divisi_id as nama_divisi FROM karyawans INNER JOIN divisis ON karyawans.divisi_id=divisis.id_divisi";
 
     #3. jalankan query
     $proses = mysqli_query($koneksi, $tampil);
@@ -48,17 +48,19 @@
     ?>
     <tr>
       <th scope="row"><?=$nomor++?></th>
-      <td><?=$data['nama_karyawans']?></td>
+      <td><?=$data['nama_karyawan']?></td>
+      <td><?=$data['foto_karyawan']?></td>
       <td><?=$data['posisi']?></td>
       <td><?=$data['divisi_id']?></td>
+      <td><?=$data['nama_divisi']?></td>
       <td>
         <!-- TOMBOL DETAIL -->
-        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#detail<?=$data['nim']?>">
+        <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#detail<?=$data['nama_karyawan']?>">
                             <i class="fa-solid fa-eye"></i>
                             </button>
 
         <!-- MODAL DETAIL-->
-        <div class="modal fade" id="detail<?=$data['nim']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="detail<?=$data['nama_karyawan']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
             <div class="modal-header">
@@ -66,7 +68,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <img width="200" src="foto/<?=$data['foto']?>" alt="">
+                <img width="200" src="foto/<?=$data['foto_karyawan']?>" alt="">
                 <table class="table">
                     <tr>
                         <td scope="col">Nama Karyawan</td>
@@ -75,6 +77,14 @@
                     <tr>
                         <td scope="col">Posisi</td>
                         <th scope="col">: <?=$data['posisi']?></th>
+                    </tr>
+                    <tr>
+                        <td scope="col">Divisi</td>
+                        <th scope="col">: <?=$data['divisi_id']?></th>
+                    </tr>
+                    <tr>
+                        <td scope="col">Divisi</td>
+                        <th scope="col">: <?=$data['nama_divisi']?></th>
                     </tr>
                 </table>
             </div>
@@ -88,12 +98,12 @@
 
         <a class="btn btn-info btn-sm" href="edit.php?id=<?=$data['id_karyawan']?>"><i class="fa fa-pen-to-square"></i></a>
       
-        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapus<?=$data['id_karyawan']?>">
+        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#hapus<?=$data['nama_karyawan']?>">
           <i class="fa-solid fa-trash"></i>
         </button>
 
         <!-- Modal -->
-        <div class="modal fade" id="hapus<?=$data['id_karyawan']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="hapus<?=$data['nama_karyawan']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -101,11 +111,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                Yakin data <b><?=$data['nama']?></b> ingin dihapus?
+                Yakin data <b><?=$data['nama_karyawan']?></b> ingin dihapus?
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <a href="hapus.php?xyz=<?=$data['id_karyawan']?>" class="btn btn-danger">Hapus</a>
+                <a href="hapus.php?xyz=<?=$data['nama_karyawan']?>" class="btn btn-danger">Hapus</a>
               </div>
             </div>
           </div>

@@ -3,10 +3,10 @@
 include("../koneksi.php");
 
 #2. ambil id yg akan disunting
-$id_karyawan = $_GET['id_karyawan'];
+$id = $_GET['id'];
 
 #3. mengambil semua record data berdasarkan id yg dipilih
-$ambil = "SELECT * FROM karyawan WHERE id_karyawan='$id_karyawan'";
+$ambil = "SELECT * FROM karyawan WHERE id_karyawan='$id'";
  
 #4. menjalankan query 
 $edit = mysqli_query($koneksi,$ambil);
@@ -48,8 +48,8 @@ $data = mysqli_fetch_array($edit);
     <label for="exampleInputPassword1" class="form-label">Posisi</label>
     <select name="posisi" class="form-control" id="">
         <option value="">-Pilih Posisi-</option>
-        <option <?php echo ($data['posisi'] == "Staff Junior") ? "selected" : "" ?> value="Staff Junior">Staff Junior</option>
-        <option <?php echo ($data['posisi'] == "Staff Senior") ? "selected" : "" ?> value="Staff Senior">Staff Senior</option>
+        <option <?php echo ($data['posisi_id'] == "Staff Junior") ? "selected" : "" ?> value="Staff Junior">Staff Junior</option>
+        <option <?php echo ($data['posisi_id'] == "Staff Senior") ? "selected" : "" ?> value="Staff Senior">Staff Senior</option>
   </select>
   </div>
   <div class="mb-3">

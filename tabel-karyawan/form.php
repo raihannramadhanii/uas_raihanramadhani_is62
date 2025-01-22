@@ -32,10 +32,23 @@
     <option value="">--Pilih Posisi--</option>
     <option value="Staff Junior">Staff Junior</option>
     <option value="Staff Senior">Staff Senior</option>
+    </select>
   </div>
   <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Divisi</label>
-    <input type="date" name="divisi_id" class="form-control" id="exampleInputPassword1">
+    <label for="exampleInputPassword1" class="form-label"> Divisi </label>
+    <select name="Divisi"  class="form-control" id="">
+    <option value="">--Pilih Divisi--</option>
+    <?php
+        include_once('../koneksi.php');
+        $sql_divisi = "SELECT * FROM divisis";
+        $qry_divisi = mysqli_query($koneksi,$sql_divisi);
+        foreach($qry_divisi as $data_divisi){
+            ?>
+            <option value="<?=$data_divisi['id_divisi']?>"><?=$data_divisi['nama_divisi']?></option>
+            <?php
+       }
+  ?>
+</select>
   </div>
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">Foto</label>

@@ -6,9 +6,11 @@ include("../koneksi.php");
 $nama_karyawan = $_POST['nama_karyawan'];
 $posisi = $_POST['posisi'];
 $divisi_id = $_POST['divisi_id'];
+$nama_divisi= $_POST['nama_divisi'];
+
 
 #3. menulis query
-$simpan = "INSERT INTO karyawan (nama_karyawan,posisi,divisi_id) VALUES ('$nama_karyawan','$posisi','$divisi_id')";
+$simpan = "INSERT INTO karyawans (nama_karyawan,posisi,divisi_id,nama_divisi) VALUES ('$nama_karyawan','$posisi','$divisi_id','$nama_divisi')";
 
 #4. jalankan query
 $proses = mysqli_query($koneksi,$simpan);

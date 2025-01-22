@@ -3,10 +3,10 @@
 include("../koneksi.php");
 
 #2. mengambil id dari tombol hapus
-$id = $_GET['xyz'];
+$id_karyawan = $_GET['xyz'];
 
 #3. menulis query
-$hapus = "DELETE FROM karyawan WHERE id='$id'";
+$hapus = "DELETE FROM karyawans WHERE id_karyawan='$id_karyawan'";
 
 #4. jalankan query
 $proses = mysqli_query($koneksi,$hapus);
